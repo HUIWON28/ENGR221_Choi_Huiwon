@@ -1,0 +1,13 @@
+# Lab1
+## Files
+### adventure.py
+
+This file contains a simple soccer game.
+
+The player enters their name and chooses a specialty.
+Then, the player makes decisions during a soccer match.
+The player's health and mana change depending on their choices.
+
+The game has two possible endings:
+- The team wins the match.
+- The team loses the match.

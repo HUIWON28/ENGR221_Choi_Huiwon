@@ -1,0 +1,25 @@
+# Answers
+
+A. What are the names of the functions defined in this file?
+: The functions defined in this file are 'adventure()' and 'create_player()'.
+
+B. On what line is the 'adventure()' function called?
+: The 'adventure()' function is called on line 71.
+
+C. On what line is the 'create_player()' function called?
+: The 'create_player()' function is called on line 20.
+
+D. Which function is called first when the script is run?
+: The 'adventure()' function is called first when the script is run.
+
+E. What does the 'input()' function do (used in lines 64 and 65)?
+: The 'input()' function gets information from the user. In this script, it is used to get the player's name and specialty.
+
+F. Looking at the if block starting on line 24, what is printed if the user inputs neither “Warrior” nor “Mage” as their specialty?
+: If the user enters a specialty other than “Warrior” or “Mage,” the program prints, 'A unique specialty I do not recognize! Intriguing...'
+
+G. What do you think is the purpose of the curly braces “{}” in the print statements on lines 40 and 41?
+: The curly braces '{}' are placeholders for inserting the values of variables into a string. In this case, they are used to display the player's health and mana values.
+
+H. As written, the script runs in an infinite loop. What line in the 'adventure()' function could you change to prevent this?
+: Line 53, 'return 0', could be changed to return a value other than '0'. This would cause the 'while win == 0' loop to end.
