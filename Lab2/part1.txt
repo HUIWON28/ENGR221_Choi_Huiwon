@@ -1,0 +1,14 @@
+1.2.a
+We access values from the preferences file by using the preferences class, for example Preferences.NUM_ROWS or Preferences.NUM_COLS.
+
+1.2.b
+self.board is a list (specifically, a two-dimensional list).
+
+1.2.c
+Each element of self.board is a Cell object.
+
+1.2.d
+We access a cell on the board with its row and column indexes: self.board[row][col]
+
+1.2.e
+We change the type of a cell by calling one of the Cell methods such as become_player(), become_food(), become_empty(), or become_enemy().

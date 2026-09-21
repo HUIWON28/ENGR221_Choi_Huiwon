@@ -1,0 +1,93 @@
+ENGR 221 assignment 2 - pseudocode
+Name: Huiwon Choi
+
+2.1 Neighbor Retrieval Methods
+
+get_west_neighbor(cell)
+1. Check whether the cell's column is greater than 0.
+2. If it is, return the board cell at the same row and one column to the left.
+3. Otherwise, return None.
+
+get_east_neighbor(cell)
+1. Check whether the cell's column is less than the last column.
+2. If it is, return the board cell at the same row and one column to the right.
+3. Otherwise, return None.
+
+get_north_neighbor(cell)
+1. Check whether the cell's row is greater than 0.
+2. If it is, return the board cell at one row above and the same column.
+3. Otherwise, return None.
+
+get_south_neighbor(cell)
+1. Check whether the cell's row is less than the last row.
+2. If it is, return the board cell at one row below and the same column.
+3. Otherwise, return None.
+
+
+2.2 Player Movement Methods
+
+move_player_right()
+1. Get the player's east neighbor.
+2. If a valid neighbor exists, move the player to that cell.
+
+move_player_left()
+1. Get the player's west neighbor.
+2. If a valid neighbor exists, move the player to that cell.
+
+move_player_up()
+1. Get the player's north neighbor.
+2. If a valid neighbor exists, move the player to that cell.
+
+move_player_down()
+1. Get the player's south neighbor.
+2. If a valid neighbor exists, move the player to that cell.
+
+
+2.3 Food Methods
+
+add_food()
+1. Use the randomly selected row and column.
+2. Get the cell at that location.
+3. If the cell is empty, change it to food.
+4. Add the cell to the food list.
+5. Decrease the number of empty cells by one.
+
+eat_food(cell)
+1. Remove the cell from the food list.
+2. Increase the score by one.
+3. Increase the number of empty cells by one.
+
+
+2.4 Enemy Methods
+
+add_enemy()
+1. Select the bottom-right cell of the board.
+2. If the cell contains the player, set game over.
+3. If the cell contains food, remove the food and make the cell an enemy.
+4. If the cell is empty, make the cell an enemy.
+5. Add the enemy cell to the enemies list when an enemy is created.
+6. Update the number of empty cells when an empty cell becomes an enemy.
+
+move_enemy_to_cell(enemy_cell, cell, idx)
+1. If the destination contains the player, set game over.
+2. If the destination contains another enemy, do not move.
+3. If the destination contains food, remove the food.
+4. Make the old enemy cell empty.
+5. Make the destination cell an enemy.
+6. Replace the enemy at index idx in the enemies list with the destination cell.
+
+move_enemy_left(idx)
+1. Get the enemy's west neighbor.
+2. If it exists, move the enemy to that cell.
+
+move_enemy_right(idx)
+1. Get the enemy's east neighbor.
+2. If it exists, move the enemy to that cell.
+
+move_enemy_up(idx)
+1. Get the enemy's north neighbor.
+2. If it exists, move the enemy to that cell.
+
+move_enemy_down(idx)
+1. Get the enemy's south neighbor.
+2. If it exists, move the enemy to that cell.
