@@ -1,0 +1,114 @@
+[PART 1]
+1.2.a
+A new array is created by the create_new_array() method using random integers.
+
+1.2.b
+The array is created when restart() is called.
+
+1.2.c
+yield pauses the function and returns the current indices. The function continues from there when next() is called.
+
+1.2.d
+selection_sort() uses yield to give the current indices to get_next_step(). get_next_step() uses next() to move to the next step.
+
+1.2.e
+The two arguments are outer_idx and inner_idx. They are updated by get_next_step() after each yield.
+
+
+[PART 2]
+2.2.a
+Selection Sort finds the smallest element in the unsorted part and swaps it with the first unsorted element.
+
+2.2.b
+The time complexity is O(n²) because there are nested loops.
+
+2.2.c
+The space complexity is O(1) because it sorts the original array without creating another array.
+
+
+[PART 3]
+
+3.1.a
+Insertion Sort takes one element at a time and inserts it into the correct position in the sorted part.
+
+3.1.b
+The time complexity is O(n²) because an element may need to be compared with many previous elements.
+
+3.1.c
+The space complexity is O(1) because it sorts the array in place.
+
+
+[PART 4]
+
+4.1.a
+Bubble Sort compares neighboring elements and swaps them if they are in the wrong order.
+
+4.1.b
+The time complexity is O(n²) because it uses two nested loops.
+
+4.1.c
+The space complexity is O(1) because it sorts the array in place.
+
+
+4.2
+
+[8, 1, 4, 2]
+[1, 8, 4, 2]
+[1, 4, 8, 2]
+[1, 4, 2, 8]
+[1, 4, 2, 8]
+[1, 2, 4, 8]
+[1, 2, 4, 8]
+
+
+4.3
+After each pass, the largest unsorted element is already at the end. Therefore, we do not need to check the sorted elements again.
+
+
+4.4.a
+ChatGPT
+
+4.4.b
+Write a Python function that sorts a list using Bubble Sort in ascending order. Do not use the built-in sort() function.
+
+4.4.c
+
+def bubble_sort(arr):
+    for i in range(len(arr) - 1):
+        for j in range(len(arr) - 1 - i):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+
+4.4.d
+Yes. It modifies the original list and does not create or return a new list.
+
+4.4.e
+Both versions use two loops and compare neighboring elements. The Python version uses array indices and swaps the elements directly.
+
+4.4.f
+I would add yield statements so the GUI can show each step of the algorithm.
+
+
+[PART 5]
+
+5.3.a
+Selection Sort:
+100: 0.00038933753967285156 seconds
+1,000: 0.021341800689697266 seconds
+10,000: 2.3618597984313965 seconds
+
+5.3.b
+Insertion Sort:
+100: 0.00030040740966796875 seconds
+1,000: 0.031601905822753906 seconds
+10,000: 3.724423408508301 seconds
+
+5.3.c
+Bubble Sort:
+100: 0.0005748271942138672 seconds
+1,000: 0.06626510620117188 seconds
+10,000: 7.645683765411377 seconds
+
+5.3.d
+All three algorithms have O(n²) time complexity, but their actual runtimes can be different. The runtime increases significantly as the number of items increases.
