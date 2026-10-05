@@ -1,7 +1,8 @@
 """ 
 ENGR 221 Lab 3 - Sorting Algorithms
 Author: Huiwon Choi
-This file contains implementations of s0election sort, insertion sort, and bubble sort.
+Date: 2026-10-04
+This file contains implementations of selection sort, insertion sort, and bubble sort.
 """
 
 import random
@@ -180,7 +181,7 @@ class SortingAlgorithms:
         # get the time after running
         end_time = time.time()
 
-        # r eturn the difference
+        # return the difference
         return end_time - start_time
 
 
