@@ -63,31 +63,29 @@ class SortingAlgorithms:
         so that the GUI can display each step of the algorithm.
         """
 
-        # get the number of elements in the array.
+        # store the length of the array.
         n = len(self.array)
 
         # move through each position in the array.
         for i in range(n):
 
-            # highlight the current position.
+            # highlight the current position. -1: no highlight for the other index
             yield -1, i
 
-            # assume the first unsorted element is the smallest.
+            # assume the first unsorted element is the smallest. finds the smallest element.
             min_idx = i
 
-            # search the remaining unsorted portion of the array.
+            # scan the rest of the unsorted part.
             for j in range(i + 1, n):
 
                 # highlight the current element being compared.
                 yield min_idx, j
 
-                # if the current element is smaller,
-                # remember its index.
+                # if the current element is smaller, update the index.
                 if self.array[j] < self.array[min_idx]:
                     min_idx = j
 
-            # swap the smallest element with the first
-            # element in the unsorted portion.
+            # swap the smallest element into position i.
             self.array[i], self.array[min_idx] = (
                 self.array[min_idx],
                 self.array[i]
@@ -103,18 +101,16 @@ class SortingAlgorithms:
         element at a time. The array is modified in-place.
         """
 
+        # store the length of the array.
         n = len(self.array)
 
-        # start with the second element because the first
-        # element is already considered sorted.
+        # the first element alone is already sorted so start at index 1. i: the element i'm inserting
         for i in range(1, n):
 
-            # start comparing the current element with the
-            # element immediately before it.
+            # j tracks where the current element is as it moves left.
             j = i
 
-            # move the current element toward the beginning
-            # while it is smaller than the previous element.
+            # keep going until the element reaches the front.
             while j > 0:
 
                 # show the two elements being compared.
@@ -124,7 +120,7 @@ class SortingAlgorithms:
                 if self.array[j - 1] <= self.array[j]:
                     break
 
-                # swap the two elements.
+                # otherwise swap the two elements.
                 self.array[j - 1], self.array[j] = (
                     self.array[j],
                     self.array[j - 1]
@@ -145,14 +141,14 @@ class SortingAlgorithms:
         each pass.
         """
 
+        # store the length of the array.
         n = len(self.array)
 
-        # each pass places one more large element at the end
-        # of the unsorted portion of the array.
+        # i counts the passes. I need at most n - 1 passes.
         for i in range(n - 1):
 
-            # The last i elements are already sorted, so they
-            # do not need to be checked again.
+            # each pass pushes the largest remaining element to the end
+            # the last i elements are already sorted, so they do not need to be checked again.
             for j in range(n - 1 - i):
 
                 # show the two neighboring elements being compared.

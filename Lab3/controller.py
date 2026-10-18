@@ -2,7 +2,7 @@
 Controls the flow of the program, including key presses.
 You do NOT need to update this file.
 """
-
+  
 import pygame
 from enum import Enum 
 
@@ -101,8 +101,8 @@ class Controller:
 
     class Keypress(Enum):
         """ Define the keyboard inputs """
-        NEXT = pygame.K_l, pygame.K_RIGHT  # l and right arrow key
-        CONT = pygame.K_SPACE,              # space key
+        NEXT = pygame.K_l, pygame.K_RIGHT # l and right arrow key
+        CONT = pygame.K_SPACE, # space key
 
 if __name__ == "__main__":
     Controller().run()
