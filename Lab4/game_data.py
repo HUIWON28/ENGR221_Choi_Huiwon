@@ -1,6 +1,7 @@
 """ TODO
-Author: Your name here!
-Add a description here!
+Author: huiwon choi
+Description:  Stores and updates the state of the Duck Collector game (board, player body, food, score). 
+Includes player movement (growing when food iseaten) and the AI that uses BFS or DFS to find the closest food.
 """
 
 import random
@@ -34,10 +35,8 @@ class GameData:
         # Number of food eaten
         self.score = 0
 
-    
-    ##########################
+
     # Initialization methods #
-    ##########################
 
     def init_player(self):
         """ Initialize the player cell """
@@ -50,9 +49,7 @@ class GameData:
         return [player]
 
 
-    ###################################
     # Get information about the board #
-    ###################################
 
     def in_ai_mode(self):
         """ Returns whether or not we are in AI mode """
@@ -85,9 +82,7 @@ class GameData:
         return len(self.food) / Preferences.NUM_CELLS > Preferences.MAX_FOOD
 
 
-    ###################################
     # Set information about the board #
-    ###################################
 
     def set_game_over(self) -> None:
         """ Turn on the game over flag """
@@ -120,9 +115,7 @@ class GameData:
         self.current_mode = self.MoveMode.AI_MODE
 
 
-    ##############################
     # Neighbor Retrieval Methods #
-    ##############################
 
     def get_next_cell(self):
         """ Returns the next cell to move to based on the current direction """
@@ -187,9 +180,7 @@ class GameData:
         return random.choice(neighbors)
 
 
-    ###########################
     # Player Movement Methods #
-    ###########################
 
     def move_player(self) -> None:
         """ Move the player to the next step based on the current
@@ -231,26 +222,30 @@ class GameData:
             self.move_player_to_cell(neighbor)
 
     def move_player_to_cell(self, cell: Cell) -> None:
-        """ Move the player to the given cell """
-        
+        """ Move the player to the given cell. If the cell is off the map or
+            part of the body, the game is over. If the cell is food, the player
+            eats it and grows by one (the tail stays put). If the cell is empty,
+            the player moves forward and the tail cell is freed. """
+
         # If the cell is a body or off the map, game over
-        if not cell or cell.is_body():            
+        if not cell or cell.is_body():
             self.set_game_over()
 
+        elif cell.is_food():
+            # Eat the food: it becomes the new head and the tail stays in place
+            self.ate_food(cell)
+
         else:
-            # TODO Replace the below with new logic to extend the snake
-            
-            self.get_player().become_empty()
-            self.body.remove(self.get_player())
-            # Change the new cell to be the player type
+            # Empty cell: the old head becomes body, the new cell becomes head
+            self.get_player().become_body()
             cell.become_player()
-            # Add the new cell to the beginning of the body
             self.body.insert(0, cell)
+            # Remove the tail so the length stays the same
+            tail = self.body.pop()
+            tail.become_empty()
 
 
-    ########################
     # Food Related Methods #
-    ########################
 
     def add_food(self) -> None:
         """ Adds food to a open spot on the board """
@@ -275,17 +270,15 @@ class GameData:
 
         # The food becomes the new player
         food_cell.become_player()
-        # Add the new cell to the body
-        self.body.append(food_cell)
+        # Add the new cell to the front of the body (index 0 is the head)
+        self.body.insert(0, food_cell)
         # Remove the cell from the food list
         self.food.remove(food_cell)
 
         # Increment the player's score
         self.score += 1
 
-    ##############
     # AI methods #
-    ##############
 
     def get_next_cell_ai(self) -> None:
         """ TODO Add a docstring here """

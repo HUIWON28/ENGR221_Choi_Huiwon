@@ -1,40 +1,32 @@
-ENGR 221 - Homework 4
-Name: YOUR NAME HERE
-
-=== Part 1 ===
-
-1.2.a How is the player's location on the board represented?
-
-The player is stored in the list self.body, which holds Cell objects. The head
-of the list (body[0]) is the player's current location, and the rest of the
-cells in the list are the ducks that are following behind. At the start the
-list only has one cell, the one at (0,0). Each Cell also knows its own row and
-col, so we can find where the player is on the board from that.
+[PART 1]
+1.2.a  
+The player's location is a list of Cell objects (self.body). The head is body[0] and the tail is body[-1].
  
-1.2.b) What method(s) are given to help access different parts of the player's "body"?
-
-get_player() returns the first cell in body (the head), and get_tail() returns
-the last cell in body (the tail).
-
-1.2.c) What are the different movement modes of the player, and what do they mean in terms of how the player moves each turn?
-
-There are five modes in the MoveMode enum:
-- GOING_NORTH: the player moves up one cell each turn
-- GOING_SOUTH: the player moves down one cell each turn
-- GOING_EAST: the player moves right one cell each turn (this is the default
-  mode when the game starts)
-- GOING_WEST: the player moves left one cell each turn
-- AI_MODE: the player doesn't follow a fixed direction, instead the next cell
-  is picked by get_next_cell_ai()
-
-1.2.d) What is the current behavior of get_next_cell()? get_next_cell_ai()?
-
-get_next_cell() looks at the current mode and returns the neighbor of the
-player's head in that direction (north, south, east, or west). If the player is
-at the edge of the map it returns None, which move_player_to_cell() treats as
-game over. It doesn't handle AI mode since that uses get_next_cell_ai() instead.
-
-get_next_cell_ai() right now doesn't do any searching. It resets the search
-info on all the cells, makes an empty Stack or Queue depending on ai_type, and
-then just returns a random neighbor of the player. So in AI mode the player
-currently wanders randomly. The search code still needs to be added.
+1.2.b  
+get_player() returns the head; get_tail() returns the tail.
+ 
+1.2.c  
+GOING_NORTH/SOUTH/EAST/WEST: the player moves one cell in that direction each turn. 
+AI_MODE: the next cell is chosen automatically by the search algorithm (BFS/DFS) toward the closest duck.
+ 
+1.2.d  
+get_next_cell() returns the neighbor of the head in the current direction (None if off the board). 
+get_next_cell_ai() currently returns a random neighbor of the head.
+ 
+[PART 2]
+2.2.1.a  End
+2.2.1.b  End
+2.2.1.c  End
+2.2.1.d  Beginning
+ 
+[PART 3]
+ 
+3.2.a  
+With DFS the player takes long, winding paths and often passes nearby ducks. 
+DFS uses a stack, so it keeps going deep in one direction before backtracking and finds whichever duck is at the end of that path, not the closest one.
+ 
+3.2.b  
+BFS finds the shorter path. 
+It uses a queue and explores cells in order of distance, so the first food it reaches is the closest one. 
+DFS gives no such guarantee.
+ 
