@@ -280,9 +280,12 @@ class GameData:
 
     # AI methods #
 
-    def get_next_cell_ai(self) -> None:
-        """ TODO Add a docstring here """
-        
+    def get_next_cell_ai(self) -> Cell:
+        """ Search the board (BFS or DFS depending on ai_type) for the nearest
+            reachable food. Returns the first cell the player should step on
+            along the path to that food. If no food is reachable, returns a
+            safe (non-body) neighbor, or a random neighbor as a last resort. """
+
         # Prepare all the tiles to search
         self.reset_cells_for_search()
 
@@ -292,14 +295,45 @@ class GameData:
         else:
             cells_to_search = Queue()
 
-        # TODO Add your code here
-        
-        # Replace this line after implementing this method
-        return self.get_random_neighbor(self.get_player())
-    
+        # Start the search from the player's head
+        start = self.get_player()
+        start.set_added_to_search_list()
+        cells_to_search.add(start)
+
+        while not cells_to_search.is_empty():
+            current = cells_to_search.remove()
+
+            for neighbor in self.get_neighbors(current):
+                # Skip cells we've already seen and cells we can't walk on
+                if neighbor.on_search_list():
+                    continue
+                if not (neighbor.is_empty() or neighbor.is_food()):
+                    continue
+
+                neighbor.set_added_to_search_list()
+                neighbor.set_search_parent(current)
+
+                # Found food: return the first step toward it
+                if neighbor.is_food():
+                    return self.get_first_cell_in_path(neighbor)
+
+                cells_to_search.add(neighbor)
+
+        # No reachable food: move to any safe neighbor if one exists
+        safe = [c for c in self.get_neighbors(start) if not c.is_body()]
+        if safe:
+            return random.choice(safe)
+        return self.get_random_neighbor(start)
+
     def get_first_cell_in_path(self, cell) -> Cell:
-        """ TODO Add a docstring here """
-        pass # Remove this line after you implement your method
+        """ Given the target cell found by the search, follow the search
+            parents back toward the player and return the cell directly
+            next to the player on that path (the first step to take). """
+
+        player = self.get_player()
+        while cell.get_search_parent() is not player:
+            cell = cell.get_search_parent()
+        return cell
 
     def reset_cells_for_search(self):
         """ Clears all the search info for each cell """
