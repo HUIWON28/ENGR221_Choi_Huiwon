@@ -1,0 +1,33 @@
+Part 1
+
+1.1.a
+Both functions set up the turtle with init_turtle(), then loop 3 times.
+Each time they draw one side and turn left 120 degrees, so you end up
+with 3 sides like a triangle.
+
+1.1.b
+One side. That's why the snowflake functions call it 3 times.
+
+1.1.c
+It saves time.perf_counter() before running the function and again
+after it's done, then subtracts start from end.
+
+
+Part 4
+
+4.1.a
+Depth: 3
+
+Recursive memory usage: 47.33984375 MB
+Non-recursive memory usage: 32.1015625 MB
+
+Recursive time: 19.44517 s
+Non-recursive time: 19.05589 s
+
+4.1.b
+The recursive version makes a new function call every time it recurses,
+and each call stays on the call stack until it finishes, so it uses more
+memory. The stack version only uses one function and a list of small
+tuples, so it uses less.
+The times are pretty close because both draw the exact same lines and
+turns, and most of the time is just the turtle drawing on the screen.
