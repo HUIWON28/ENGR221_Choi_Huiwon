@@ -2,6 +2,7 @@
 Author: Prof. Alyssa
 Defines constants to be used for the program.
 You do NOT need to modify this file.
+Stores constant values like board size, speed, colors, and image paths.
 """
 
 import pygame

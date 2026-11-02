@@ -3,6 +3,7 @@ Author: Prof. Alyssa
 Creates and displays the graphics
 based on the current state of the board.
 You do NOT need to modify this file.
+Draws the board and the score on the screen
 """
 
 import pygame

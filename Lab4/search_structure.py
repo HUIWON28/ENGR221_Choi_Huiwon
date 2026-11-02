@@ -4,8 +4,9 @@ Last updated: 10/18/2026
 Description: Custom Queue (FIFO) and Stack (LIFO) classes used by the
 BFS and DFS searches in game_data.py. Both classes share the same method
 names (add, remove, is_empty) so the search code can use either one.
+Contains the custom Queue and Stack classes used by the search
 """
-
+#fifo
 class Queue():
     def __init__(self):
         self.items = []
@@ -22,7 +23,7 @@ class Queue():
         """ Returns whether or not the queue is empty """
         return len(self.items) == 0
 
-
+#lifo
 class Stack():
     def __init__(self):
         self.items = []

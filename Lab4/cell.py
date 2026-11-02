@@ -2,6 +2,7 @@
 Author: Prof. Alyssa
 Represents a single Cell on the Board.
 You do NOT need to modify this file.
+Represents a single cell on the board and stores 
 """
 
 from enum import Enum 
